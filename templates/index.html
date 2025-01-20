@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biaya Perjalanan</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hitung Biaya Perjalanan</h1>
+        <p>Masukkan data perjalanan Anda untuk menghitung total biaya bahan bakar.</p>
+        <form method="POST">
+            <div class="form-group">
+                <label for="jarak">Jarak Perjalanan (km):</label>
+                <input type="number" step="0.01" id="jarak" name="jarak" placeholder="Contoh: 100" required>
+            </div>
+            <div class="form-group">
+                <label for="konsumsi_bbm">Konsumsi BBM (km/liter):</label>
+                <input type="number" step="0.01" id="konsumsi_bbm" name="konsumsi_bbm" placeholder="Contoh: 12.5" required>
+            </div>
+            <div class="form-group">
+                <label for="harga_bbm">Harga BBM per Liter (Rp):</label>
+                <input type="number" step="0.01" id="harga_bbm" name="harga_bbm" placeholder="Contoh: 10000" required>
+            </div>
+            <button type="submit">Hitung</button>
+        </form>
+
+        {% if biaya is not none %}
+        <div class="result">
+            {% if biaya|float %}
+            <p>Total Biaya Perjalanan: <strong>Rp {{ "%.2f"|format(biaya) }}</strong></p>
+            {% else %}
+            <p>{{ biaya }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
